@@ -1,11 +1,13 @@
 library(readxl)
 library(ggplot2)
+library(reshape2)
+rm=(ls())
 
+ex2_excel <- read_excel("EsperancaVida.xlsx", sheet = 1,skip=8,n_max=(2020-1960+1))
 
-xlsx_ex2 <- "EsperancaVida.xlsx"
-UE_excel <- read_excel(xlsx_ex2, sheet = 1,skip=8,n_max=(2019-1960))
-rows<-c(grep("DE",UE_excel[0,]),grep("BG",UE_excel[0,]),grep("DK",UE_excel[0,]))
-UE_data <- data.frame(subset(UE_excel,))
+cols<-c(grep("DE",names(ex2_excel)),grep("BG",names(ex2_excel)),grep("DK",names(ex2_excel)))
 
-p <- ggplot(data = UE_data,aes(x=)) + geom_histogram()
+ex2_data <- melt(data.frame(ex2_excel[cols]))
+
+p <- ggplot(data = ex2_data,aes(x=1960:2019,y=value,fill=variable)) + geom_line()
 p
