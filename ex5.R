@@ -1,12 +1,7 @@
-set.seed(988)
+set.seed(51)
 
-ave<-NULL
-n<-3890
-
-for (i in 1:n){
-
-  ave<-c(ave,mean(rbinom(13,73,0.11)))
-
-}
-mean(ave)
-abs(1.43-mean(ave)) #ARE U SURE?
+Fn<-ecdf(rexp(131,0.14))
+x=1-Fn(4)
+1-pexp(14,0.14)
+err=x-(1-pexp(14,0.14))
+abs(err)
